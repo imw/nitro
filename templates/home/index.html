@@ -3,9 +3,13 @@
 
 {% block content %}
 
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+
     <div class="row">
         <div class="col-xs-12">
-            Hello World, at {{ now }}, {{ now|time_ago }}
+            Market information for {{ latest }}
+            {{ count }} Stocks listed on the Stocksplosion Exchange <br><br>
+            {{ market }}
         </div>
     </div>
 

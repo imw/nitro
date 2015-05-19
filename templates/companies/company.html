@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}
+Company Profile
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-xs-2"></div>
+    <div class="col-xs-8">
+        {{ ticker }} <br>
+        {% block form_content %}{% endblock %}
+    </div>
+    <div class="col-xs-2"></div>
+</div>
+{% endblock %}

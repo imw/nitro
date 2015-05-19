@@ -80,6 +80,7 @@ app.db.init_app(app)
 
 from flask.ext.security import Security, MongoEngineUserDatastore
 from flask_application.users.models import User, Role
+from flask_application.companies.models import Company
 
 # Setup Flask-Security
 app.user_datastore = MongoEngineUserDatastore(app.db, User, Role)
@@ -96,6 +97,9 @@ app.register_blueprint(users)
 
 from flask_application.admin.controllers import admin
 app.register_blueprint(admin)
+
+from flask_application.companies.controllers import companies
+app.register_blueprint(companies)
 
 
 def scan_and_import(name):

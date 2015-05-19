@@ -6,12 +6,12 @@ from pymongo.uri_parser import parse_uri
 class Config(object):
     def __init__(self):
         self.DEBUG = False
-        self.TESTING = False
+        self.TESTING = True
         self.HEROKU = False
         self.PRODUCTION = False
 
-        self.SECRET_KEY = '{SECRET_KEY}'
-        self.SITE_NAME = 'Flask Site'
+        self.SECRET_KEY = '{TEMPORARY_KEY}'
+        self.SITE_NAME = 'Nitro'
         self.LOG_LEVEL = logging.DEBUG
         self.SERVER_NAME = 'localhost:5000'
 
@@ -27,8 +27,8 @@ class Config(object):
         self.MAIL_SERVER = 'smtp.gmail.com'
         self.MAIL_PORT = 465
         self.MAIL_USE_SSL = True
-        self.MAIL_USERNAME = 'user@example.com'
-        self.MAIL_PASSWORD = '****************'
+        self.MAIL_USERNAME = 'name@company.com'
+        self.MAIL_PASSWORD = 'password_goes_here'
 
         # Flask-Security setup
         self.SECURITY_EMAIL_SENDER = 'Security < security@example.com >'
@@ -41,8 +41,7 @@ class Config(object):
         # import uuid; salt = uuid.uuid4().hex
         self.SECURITY_PASSWORD_SALT = '2b8b74efc58e489e879810905b6b6d4dc6'
 
-        self.SECURITY_CONFIRMABLE = True
-        self.SECURITY_LOGIN_WITHOUT_CONFIRMATION = False
+        self.SECURITY_CONFIRMABLE = False
 
         # CACHE
         self.CACHE_TYPE = 'simple'
