@@ -16,13 +16,16 @@ Installation
 	
 3. Create a virtualenvironment
 
-        mkvirtualenv environment
+        virtualenv -p /usr/bin/python2 nitro_venv
 
-4. Install the required python dependancies:
+4. Activate the virtual environment
+        source nitro_venv/bin/activate
+
+5. Install the required python dependancies:
 
         pip install -r requirements.txt
     
-5. Edit `nitro/config.py` to change your mail server, password salt and other settings, you must enter valid mail settings in order for user registration and password reset to work cleanly:
+6. Edit `nitro/config.py` to change your mail server, password salt and other settings, you must enter valid mail settings in order for user registration and password reset to work cleanly:
 
         class Config(object):
             SECRET_KEY = '{SECRET_KEY}'
@@ -59,12 +62,13 @@ Installation
 
             # CACHE
             CACHE_TYPE = 'simple'
-
-7. Run a development server:
+8. Populate the database
+        python manage.py populate_db()
+        
+8. Run a development server:
         
         python manage.py runserver
         
-        The first time that nitro runs, it will take about a minute to scrape stock data
 
 Usage
 -----
