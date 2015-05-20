@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, date, timedelta
 import json
 
 from flask import Blueprint, current_app
@@ -19,16 +19,26 @@ class IndexView(TemplateView):
 
  
     def get_context_data(self, *args, **kwargs):
-        latest = PollAPI.poll()
+        PollAPI.poll()
+
+        last = Price.objects.order_by('-date')[0].date
+        first = last - timedelta(days=30)
+
+        total_prices = []
+        for i in range (0, 30):
+            day = last - timedelta(days=i)
+            total_prices.append(Price.objects(date=day).sum('price'))
+
+        total_prices.reverse()
 
         chartID = 'chart_ID'
         chart_type = 'line'
         chart_height = 500
         chart = {"renderTo": chartID, "type": chart_type, "height": chart_height,}
-        series = [{"name": 'Label1', "data": [1,2,3]}, {"name": 'Label2', "data": [4, 5, 6]}]
+        series = [{"name": 'Total Price (All Securities)', "pointStart": (int(first.strftime('%s')) * 1000), "pointInterval": (24 * 3600 * 1000), "data": total_prices}]
         title = {"text": 'Stocksplosion Exchange'}
-        xAxis = {"categories": ['xAxis Data1', 'xAxis Data2', 'xAxis Data3']}
-        yAxis = {"title": {"text": 'yAxis Label'}}
+        xAxis = {"title": {"text": 'Date'}, "type": 'datetime', "dateTimeLabelFormats": { "month": '%b %Y', "day": '%b %e, %Y'}}
+        yAxis = {"title": {"text": 'Price'}}
 
         return {
             'chartID': chartID,
@@ -38,7 +48,4 @@ class IndexView(TemplateView):
             'xAxis': xAxis,
             'yAxis': yAxis,
             'config': current_app.config,
-            'latest': 'test',
-            'market': len(Company.objects()),
-            'count': len(Price.objects())
         }

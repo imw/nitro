@@ -2,18 +2,7 @@
 
 
 {% block content %}
-
-
-       <div class="row">
-        <div class="col-xs-6">
-            Market information updated {{ latest }}
-        </div>
-        <div class="col-xs-6">
-            {{ count }} Stocks listed on the Stocksplosion Exchange <br><br>
-            {{ market }}
-        </div>
-       </div>
-    <div class="row">
+   <div class="row">
         <div class="col-xs-12">
 
         <div id={{ chartID|safe }} class="chart" style="height: 500px; width: 100%"></div>
