@@ -1,5 +1,5 @@
 from flask import current_app
-from datetime import datetime
+from datetime import datetime, timedelta
 from flask.ext.script import Command
 from urllib2 import Request, urlopen
 from flask_application.models import db, FlaskDocument
@@ -10,7 +10,7 @@ class PollAPI(Command):
     """Updates price information, if necessary"""
     def run(self, **kwargs):
         self.get_market()
-        self.get_company()
+        self.get_company_days()
         self.poll()
 
     @staticmethod
@@ -25,11 +25,11 @@ class PollAPI(Command):
         return market_dict
 
     @staticmethod
-    def get_company(ticker):
+    def get_company_days(ticker,start,end):
         headers = {
         'Content-Type': 'application/json'
         }
-        request_string = 'http://stocksplosion.apsis.io/api/company/' + ticker + '?startdate=19700101&enddate=20200101'
+        request_string = 'http://stocksplosion.apsis.io/api/company/' + ticker + '?startdate=' + start + '&enddate=' + end
         request = Request(request_string, headers=headers)
 
         company_body = urlopen(request).read()
@@ -39,14 +39,22 @@ class PollAPI(Command):
     @staticmethod
     def update_prices(ticker):
         company_record = Company.objects(symbol=ticker)[0]
-        company_dict = PollAPI.get_company(ticker)
-        for key, value in company_dict['prices'].iteritems():
-            record_date = datetime.strptime(key, '%Y%m%d')
-            try: 
-                Price.find({company:company_record},{date:key})
+        today = datetime.today()
+        start = today - timedelta(days=90)
+        while start < today:
+            end = start + timedelta(days=30)
+            try:
+                company_dict = PollAPI.get_company_days(ticker, start.strftime("%Y%m%d"), end.strftime("%Y%m%d"))
+                for key, value in company_dict['prices'].iteritems():
+                    record_date = datetime.strptime(key, '%Y%m%d')
+                    try: 
+                        Price.find({company:company_record},{date:key})
+                    except:
+                        new_price = Price( date=record_date, price=value, company=company_record)
+                        new_price.save()
             except:
-                new_price = Price( date=record_date, price=value, company=company_record)
-                new_price.save()
+                pass
+            start = start + timedelta(days=30)
 
 
     @staticmethod

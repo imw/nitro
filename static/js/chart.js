@@ -5,7 +5,8 @@ $(document).ready(function() {
         title: title,
         xAxis: xAxis,
         yAxis: yAxis,
-        series: series
+        series: series,
+        tooltip: tooltip
     });
 });
 

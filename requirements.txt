@@ -27,3 +27,4 @@ pep8==1.5.7
 pyflakes==0.8.1
 pymongo==2.7.2
 webassets==0.10.1
+numpy==1.9.2

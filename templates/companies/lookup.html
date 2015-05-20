@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+   <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+        <h1>Stock Lookup</h1>
+  <form action="" method="get" name="lookup" onsubmit="location.href='/companies/' + document.getElementById('ticker').value; return false;">
+      {{ form.hidden_tag() }}
+            <div class="form-group"
+            <label class="control-label" for="lookup">Enter Ticker:</label>
+            {{ form.ticker(size=80,class_="form-control") }}
+            </div>
+      <p><input class="btn" type="submit" value="Find Company"></p>
+  </form>
+            
+        </div>
+        <div class="col-xs-1"></div>
+    </div>
+
+{% endblock %}

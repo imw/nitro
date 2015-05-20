@@ -22,10 +22,10 @@ class IndexView(TemplateView):
         PollAPI.poll()
 
         last = Price.objects.order_by('-date')[0].date
-        first = last - timedelta(days=30)
+        first = last - timedelta(days=90)
 
         total_prices = []
-        for i in range (0, 30):
+        for i in range (0, 90):
             day = last - timedelta(days=i)
             total_prices.append(Price.objects(date=day).sum('price'))
 
@@ -39,6 +39,7 @@ class IndexView(TemplateView):
         title = {"text": 'Stocksplosion Exchange'}
         xAxis = {"title": {"text": 'Date'}, "type": 'datetime', "dateTimeLabelFormats": { "month": '%b %Y', "day": '%b %e, %Y'}}
         yAxis = {"title": {"text": 'Price'}}
+        tooltip = {"xDateFormat": '%b %e, %Y'}
 
         return {
             'chartID': chartID,
@@ -47,5 +48,6 @@ class IndexView(TemplateView):
             'title': title,
             'xAxis': xAxis,
             'yAxis': yAxis,
-            'config': current_app.config,
+            'tooltip': tooltip,
+            'config': current_app.config
         }

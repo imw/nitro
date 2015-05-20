@@ -107,6 +107,9 @@ from flask_application.companies.controllers import companies
 app.register_blueprint(companies)
 
 
+from flask_application.api import PollAPI
+
+
 def scan_and_import(name):
     for root, _, files in os.walk(FLASK_APP_DIR):
         if ('%s.py' % name) in files:

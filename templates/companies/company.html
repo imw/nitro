@@ -6,11 +6,47 @@ Company Profile
 
 {% block content %}
 <div class="row">
-    <div class="col-xs-2"></div>
     <div class="col-xs-8">
-        {{ ticker }} <br>
+        <div id={{ chartID|safe }} class="chart" style="height: 500px; width: 100%"></div>
+             <script>
+                var chart_id = {{ chartID|safe }}
+                var series = {{ series|safe }}
+                var title = {{ title|safe }}
+                var xAxis = {{ xAxis|safe }}
+                var yAxis = {{ yAxis|safe }}
+                var chart = {{ chart|safe }}
+                var tooltip = {{ tooltip|safe }}
+             </script>
+       </div>
         {% block form_content %}{% endblock %}
+    <div class="col-xs-4">
+        <center><h1><span class="label label-{{directive}}">{{directive}}</span></h1></center>
+         <div class="table-responsive">
+            <table class="table">
+                <tr>
+                    <th>Ticker</th>
+                    <td>{{ticker}}</td>
+                </tr>
+                <tr>
+                    <th>Price</th>
+                    <td>{{price}}</td>
+                </tr>
+                <tr>
+                    <th>Updated</th>
+                    <td>{{updated}}</th>
+                </tr>
+                <tr>
+                    <th>Listed</th>
+                    <td>{{listed}}</td>
+                </tr>
+            </table>
+        </div> 
     </div>
-    <div class="col-xs-2"></div>
 </div>
 {% endblock %}
+{% block scripts %}
+  {{super()}}
+  <script src="http://code.highcharts.com/highcharts.js"></script>
+  <script src='{{ url_for('static', filename='js/chart.js') }}'></script>
+{% endblock %}
+
