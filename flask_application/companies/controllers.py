@@ -23,9 +23,3 @@ class CompanyView(TemplateView):
 @companies.route('/<ticker>')
 def show_company(ticker):
     return render_template('companies/company.html', ticker=ticker)
-
-#company_view = CompanyView.as_view('company')
-
-#companies.add_url_rule('/companies/', defaults={'ticker': None}, view_func=company_view, methods=['GET',])
-
-#companies.add_url_rule('/companies/<ticker>', view_func=company_view, methods=['GET',])

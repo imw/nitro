@@ -5,7 +5,6 @@ from flask.ext.security.confirmable import confirm_user
 
 from flask_application.models import FlaskDocument
 
-
 class ResetDB(Command):
     """Drops all tables and recreates them"""
     def run(self, **kwargs):

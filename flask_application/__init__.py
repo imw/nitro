@@ -57,6 +57,11 @@ else:
 from flask_bootstrap import Bootstrap
 Bootstrap(app)
 
+from flask_bootstrap import WebCDN
+app.extensions['bootstrap']['cdns']['jquery'] = WebCDN(
+    '//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/'
+)
+
 # Assets
 from flask.ext.assets import Environment
 assets = Environment(app)
