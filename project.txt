@@ -1,0 +1,17 @@
+Apsis Work Sample Proposal
+
+    In general, my approach to this project was to reinvent as little as possible, make the application clean and usable, and to product something relatively easy to deploy. I decided to use the Flask microframework because it offers simplicity and extensibility without dictating a particular approach. 
+    I began by creating the logo/branding. I find that it helps me to have a name/identity for a project. I played with a few different flask boilerplate options before deciding on flaskBootstrapSecurity, by hansonkd. I found that it already put together many of the extensions I planned to use, and enforced a certain discipline for making a scalable/robust application.
+    I proceeded to get basic scaffolding in place (blueprints, controllers, etc), and then get a rough implementation of charts working. I wanted to be able to show a good amount of data, so I decided it would make sense to scrape the stock api into a local database. Once the database schema and scraping functions were working, I implemented the overall market chart (on the front page), to get a feel for the charting library.
+    In building the company view, decision engine and leaderboard, I was able to make use of the work that was already done in building the index page. There were a few minor things to clean up from the boilerplate, but not much. Mostly it was a straightforward process of putting one foot in front of the other until the product looks right.
+
+Time Spent:
+*Evaluting frameworks: 2 hours - not billable
+*Framework setup and scaffolding : 3 hours - $300
+*Design and styling: 2 hours - $225
+*Database/API design and implementation : 3 hours - $300
+*Charts and outputs: 2 hours - $300
+*Testing - 1 hours - $150
+*Documentation - .5 hours - $75
+
+Total: 11.5 billable hours - $1725
