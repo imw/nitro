@@ -41,7 +41,7 @@ class Config(object):
         # import uuid; salt = uuid.uuid4().hex
         self.SECURITY_PASSWORD_SALT = '2b8b74efc58e489e879810905b6b6d4dc6'
 
-        self.SECURITY_CONFIRMABLE = False
+        self.SECURITY_CONFIRMABLE = True
 
         # CACHE
         self.CACHE_TYPE = 'simple'

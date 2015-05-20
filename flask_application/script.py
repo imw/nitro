@@ -4,6 +4,7 @@ from flask.ext.script import Command
 from flask.ext.security.confirmable import confirm_user
 
 from flask_application.models import FlaskDocument
+from flask_application.api import PollAPI
 
 class ResetDB(Command):
     """Drops all tables and recreates them"""
@@ -21,6 +22,7 @@ class PopulateDB(Command):
     def run(self, **kwargs):
         self.create_roles()
         self.create_users()
+        PollAPI.poll()
 
     @staticmethod
     def create_roles():
@@ -30,9 +32,9 @@ class PopulateDB(Command):
 
     @staticmethod
     def create_users():
-        for u in (('matt', 'matt@lp.com', 'password', ['admin'], True),
-                  ('joe', 'joe@lp.com', 'password', ['editor'], True),
-                  ('jill', 'jill@lp.com', 'password', ['author'], True),
+        for u in (('matt', 'matt@lp.com', 'password', [], True),
+                  ('joe', 'joe@lp.com', 'password', [], True),
+                  ('jill', 'jill@lp.com', 'password', [], True),
                   ('tiya', 'tiya@lp.com', 'password', [], False)):
             user = current_app.user_datastore.create_user(
                 username=u[0],

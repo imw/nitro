@@ -108,6 +108,7 @@ app.register_blueprint(companies)
 
 
 from flask_application.api import PollAPI
+PollAPI.poll()
 
 
 def scan_and_import(name):

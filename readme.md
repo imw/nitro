@@ -1,25 +1,16 @@
-Flask WebApp Boilerplate Project
+Apsis Work Sample
 =========================
-http://flask.pocoo.org/
-
-This is a skeleton project meant to be helpful for those who want to quickly jump into a new flask project. UserAccounts, Tests, Caching, Mail, User Registration, Roles, Python Script Commands, and Twitter Bootstrap are already configured.
-
-The Flask Boilerplate Project consists of many projects merged into one to provide the most flexible boilerplate for your flask project.
-
-It is pre-configured for a production Heroku environment, but can be adjusted to suit your needs.
-
-If you would like other confirgurations available or to add certain features, create an issue and I will do my best.
-
+This is a work sample provided to Apsis Labs by Isaac Wilder.
 
 Installation
 ------------
 1. Download via git:
 
-        git clone git://github.com/hansonkd/FlaskBootstrapSecurity.git
+        git clone git://github.com/imw/nitro.git
 
 2. Change into the cloned directory
 
-        cd FlaskBootstrapSecurity
+        cd nitro
 
 2. Get VirtualEnv and VirtualEnvWrapper set up. See here for further details: http://www.doughellmann.com/docs/virtualenvwrapper/
 	
@@ -31,7 +22,7 @@ Installation
 
         pip install -r requirements.txt
     
-5. Edit `flask_application/config.py` to change your mail server, password salt and other settings:
+5. Edit `nitro/config.py` to change your mail server, password salt and other settings, you must enter valid mail settings in order for user registration and password reset to work cleanly:
 
         class Config(object):
             SECRET_KEY = '{SECRET_KEY}'
@@ -69,10 +60,11 @@ Installation
             # CACHE
             CACHE_TYPE = 'simple'
 
-
 7. Run a development server:
         
         python manage.py runserver
+        
+        The first time that nitro runs, it will take about a minute to scrape stock data
 
 Usage
 -----
@@ -87,8 +79,11 @@ _Run these commands by using `python manage.py <command>`_
 * `clean` - Removes *.pyc files
 * `shell` - Opens a shell within the Flask context
 * `show_urls` - Lists the urls that are available
-* `run_tests` - Runs unittests using nose.
+
+You can run the unittests either with `ENVIRONMENT=TESTING ./manage.py run_tests`, with `ENVIRONMENT=TESTING . /bin/run_tests.sh` or `ENVIRONMENT=TESTING nosetests`.
+
 * Commands included with Flask-Security can be found here: http://packages.python.org/Flask-Security/#flask-script-commands and by looking in `flask_application/script.py`
+
 
 ##Templates
 The base template used Flask-Bootstrap for basic templates. This project can be overridden by adding your own templates to the `templates` folder or by taking it out.
@@ -99,7 +94,6 @@ The structure provides you with a way to scale your app comfortably. All sub-app
 The same carries over to your models. It is preferable to subclass `FlaskDocument` than to subclass mongoengines `Document` directly. Because `FlaskDocument` is under your control, you can override and add functions to enrich your all your models at once.
 
 ##Running Tests
-You can run the unittests either with `ENVIRONMENT=TESTING ./manage.py run_tests`, with `ENVIRONMENT=TESTING . /bin/run_tests.sh` or `ENVIRONMENT=TESTING nosetests`.
 
 This repo is configured for Continuous Integration with Travis. Every commit runs the test suite. You can add Travis to your own projects by pointing it at your forked repository.
 
@@ -132,6 +126,7 @@ Credit
 * Flask-MongoEngine
 * Flask-Testing
 * python-memcached
+* numpy
 
 ####Non-Python Projects:
 * Twitter Bootstrap
