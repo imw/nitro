@@ -29,6 +29,7 @@ def movingaverage(interval, window_size):
     return numpy.convolve(interval, window, 'valid')
     
 @companies.route('/<ticker>')
+@login_required
 def show_company(ticker):
     try:
         company_obj = Company.objects(symbol=ticker)[0]
@@ -73,10 +74,21 @@ def show_company(ticker):
     return render_template('companies/company.html', chartID=chartID, chart=chart, series=series, title=title, xAxis=xAxis, yAxis=yAxis, tooltip=tooltip, directive=directive, ticker=ticker, price=price, updated=updated, listed=listed)
 
 @companies.route('/lookup')
+@login_required
 def lookup():
     form = LookupForm()
     return render_template('companies/lookup.html',form=form)
 
 @companies.route('/leaderboard')
+@login_required
 def leaderboard():
-    return render_template('companies/leaderboard.html')
+    companies = Company.objects()
+    movement = []
+    for company_obj in companies:
+       difference = Price.objects(company=company_obj).order_by('-date')[0].price - Price.objects(company=company_obj).order_by('-date')[1].price
+       company_tuple = [company_obj.name, company_obj.symbol, difference]
+       movement.append(company_tuple)
+    
+    movement.sort(key=lambda x: x[2], reverse=True)
+    movement = movement[0:10]
+    return render_template('companies/leaderboard.html',movement=movement)

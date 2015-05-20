@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+   <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+        <h1>Market Leaders</h1>
+        <div class="table-responsive">
+            <table class="table">
+            <tr>
+                <th>Company</th>
+                <th>Ticker</th>
+                <th>Change</th>
+            </tr>
+            <tr>
+                <td>{{movement[0][0]}}</td>
+                <td>{{movement[0][1]}}</td>
+                <td>{{movement[0][2]}}</td>
+            </tr>
+            <tr>
+                <td>{{movement[1][0]}}</td>
+                <td>{{movement[1][1]}}</td>
+                <td>{{movement[1][2]}}</td>
+            </tr>
+            <tr>
+                <td>{{movement[2][0]}}</td>
+                <td>{{movement[2][1]}}</td>
+                <td>{{movement[2][2]}}</td>
+            </tr>
+            <tr>
+                <td>{{movement[3][0]}}</td>
+                <td>{{movement[3][1]}}</td>
+                <td>{{movement[3][2]}}</td>
+            </tr>
+            <tr>
+                <td>{{movement[4][0]}}</td>
+                <td>{{movement[4][1]}}</td>
+                <td>{{movement[4][2]}}</td>
+            </tr>
+            <tr>
+                <td>{{movement[5][0]}}</td>
+                <td>{{movement[5][1]}}</td>
+                <td>{{movement[5][2]}}</td>
+            </tr>
+            <tr>
+                <td>{{movement[6][0]}}</td>
+                <td>{{movement[6][1]}}</td>
+                <td>{{movement[6][2]}}</td>
+            </tr>
+            <tr>
+                <td>{{movement[7][0]}}</td>
+                <td>{{movement[7][1]}}</td>
+                <td>{{movement[7][2]}}</td>
+            </tr>
+            <tr>
+                <td>{{movement[8][0]}}</td>
+                <td>{{movement[8][1]}}</td>
+                <td>{{movement[8][2]}}</td>
+            </tr>
+            <tr>
+                <td>{{movement[9][0]}}</td>
+                <td>{{movement[9][1]}}</td>
+                <td>{{movement[9][2]}}</td>
+            </tr>
+            </table>
+        </div>
+    
+           
+        </div>
+        <div class="col-xs-1"></div>
+    </div>
+
+{% endblock %}

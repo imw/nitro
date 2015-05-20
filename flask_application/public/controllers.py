@@ -27,7 +27,8 @@ class IndexView(TemplateView):
         total_prices = []
         for i in range (0, 90):
             day = last - timedelta(days=i)
-            total_prices.append(Price.objects(date=day).sum('price'))
+            if Price.objects(date=day).count() >= 193:
+                total_prices.append(Price.objects(date=day).sum('price'))
 
         total_prices.reverse()
 
