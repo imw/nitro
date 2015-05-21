@@ -4,6 +4,7 @@
 {{super()}}
     {% assets filters="cssmin", output="gen/packed.css", "css/site.css" %}
           <link rel="stylesheet" href="{{ ASSET_URL }}"/>
+          <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico')}}"/>
     {% endassets %}
 {% endblock %}
 
